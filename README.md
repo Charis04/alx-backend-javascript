@@ -1,1 +1,1 @@
-Java script for backend programming
+Javascript for backend programming
