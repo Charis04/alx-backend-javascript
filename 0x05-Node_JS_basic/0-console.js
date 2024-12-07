@@ -1,5 +1,5 @@
-displayMessage = function(msg) {
-    console.log(msg)
-};
+function displayMessage(msg) {
+  console.log(msg);
+}
 
-module.exports = displayMessage
+module.exports = displayMessage;
