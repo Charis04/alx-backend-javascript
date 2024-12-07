@@ -1,5 +1,4 @@
 process.stdout.write('Welcome to ALX, what is your name?\n');
-process.stdin.setEncoding('utf8');
 
 process.stdin.on('data', (data) => {
   process.stdout.write(`Your name is: ${data.toString()}`);
@@ -8,6 +7,8 @@ process.stdin.on('data', (data) => {
   }
 });
 
-process.stdin.on('end', () => {
-  process.stdout.write('This important software is now closing\n');
+process.on('exit', () => {
+  if (!process.stdin.isTTY) {
+    process.stdout.write('This important software is now closing\n');
+  }
 });
