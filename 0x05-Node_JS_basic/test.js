@@ -1,7 +1,13 @@
-const obj = {"item1": "value 1", item2: "value2"};
+function anAsync() {
+    console.log("Start cooking");
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log("Food is ready")
+            resolve("rice");;
+        }, 3000);
+    })
+};
 
-console.log(obj["item1"])
-
-for (const item in obj) {
-    console.log(item)
-}
+anAsync()
+    .then((food) => console.log(`Eat ${food}`))
+console.log("Play game");
