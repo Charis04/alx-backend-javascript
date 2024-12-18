@@ -15,7 +15,7 @@ function countStudents(filePath) {
       const students = lines.map((line) => line.split(','));
 
       let outText = '';
-      outText += `Number of students: ${students.length}`;
+      outText += `Number of students: ${students.length}\n`;
 
       const fields = {};
       fields.dump = [];
@@ -29,8 +29,8 @@ function countStudents(filePath) {
 
       delete fields.dump;
       for (const [field, firstnames] of Object.entries(fields)) {
-        outText += `\nNumber of students in ${field}: ${
-          firstnames.length}. List: ${firstnames}`;
+        outText += `Number of students in ${field}: ${
+          firstnames.length}. List: ${firstnames}\n`;
       }
 
       resolve(outText);
