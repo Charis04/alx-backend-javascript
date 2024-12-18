@@ -15,7 +15,7 @@ function countStudents(filePath) {
       const students = lines.map((line) => line.split(','));
 
       let outText = '';
-      outText += `Number of students: ${students.length}\n`;
+      outText += `Number of students: ${students.length}`;
 
       const fields = {};
       fields.dump = [];
@@ -29,33 +29,30 @@ function countStudents(filePath) {
 
       delete fields.dump;
       for (const [field, firstnames] of Object.entries(fields)) {
-        console.log(field);
-        outText += (`Number of students in ${field}: ${firstnames.length}`);
-        //outText += `List: ${firstnames.join(', ')}\n`;
-      };
+        outText += `\nNumber of students in ${field}: ${
+          firstnames.length}. List: ${firstnames}`;
+      }
 
-      console.log(outText);
       resolve(outText);
     });
   });
 }
 
 const app = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/html'});
+  res.writeHead(200, { 'Content-Type': 'text/html' });
   if (req.url === '/') {
     res.write('Hello Holberton School!');
     res.end();
-  }
-  else {
+  } else {
     res.write('This is the list of our students\n');
     countStudents(process.argv[2].toString()).then((output) => {
-      res.end(output)
+      res.end(output);
     });
   }
 });
 
 app.listen(1245, () => {
-  console.log("Server running...")
+  console.log('Server running...');
 });
 
 module.exports = app;
