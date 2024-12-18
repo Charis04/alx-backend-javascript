@@ -30,7 +30,7 @@ function countStudents(filePath) {
       delete fields.dump;
       for (const [field, firstnames] of Object.entries(fields)) {
         outText += `Number of students in ${field}: ${
-          firstnames.length}. List: ${firstnames}\n`;
+          firstnames.length}. List: ${firstnames.join(', ')}\n`;
       }
 
       resolve(outText);
