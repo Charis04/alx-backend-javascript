@@ -5,7 +5,7 @@ const app = express();
 
 // Define the root endpoint
 app.get('/', (req, res) => {
-  res.send('Hello ALX!');
+  res.send('Hello Holberton School!');
 });
 
 // Make the app listen on port 1245
