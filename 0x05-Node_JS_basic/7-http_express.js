@@ -5,42 +5,44 @@ const fs = require('fs');
 const app = express();
 
 // Function to read and process the CSV file
-const countStudents = (database) => {
+const countStudents = (filePath) => {
   return new Promise((resolve, reject) => {
-    fs.readFile(database, 'utf-8', (err, data) => {
+    fs.readFile(filePath, 'utf8', (err, data) => {
       if (err) {
         reject(new Error('Cannot load the database'));
         return;
       }
 
-      const lines = data.split('\n').filter((line) => line.trim() !== ''); // Remove empty lines
-      if (lines.length === 0) {
-        reject(new Error('No data in the database'));
-        return;
-      }
+      const lines = data.split('\n').filter((line) => line.trim() !== '');
+      lines.shift();
 
-      const header = lines.shift(); // Remove the header row
       const students = lines.map((line) => line.split(','));
 
-      const summary = {};
-      students.forEach((student) => {
-        const field = student[3];
-        if (!summary[field]) {
-          summary[field] = [];
+      console.log(`Number of students: ${students.length}`);
+
+      const fields = {};
+      fields.dump = [];
+      students.forEach(([firstName, lastName, age, field]) => {
+        if (!fields[field]) {
+          fields[field] = [];
         }
-        summary[field].push(student[0]);
+        fields[field].push(firstName);
+        fields.dump.push(lastName, age);
       });
 
-      let result = `Number of students: ${students.length}\n`;
-      for (const [field, names] of Object.entries(summary)) {
-        result += `Number of students in ${field}: ${names.length}. List: ${names.join(', ')}\n`;
+      delete fields.dump;
+      for (const [field, firstnames] of Object.entries(fields)) {
+        console.log(
+          `Number of students in ${field}: ${
+            firstnames.length
+          }. List: ${firstnames.join(', ')}`,
+        );
       }
 
-      resolve(result.trim());
+      resolve();
     });
   });
-};
-
+}
 // Define the root endpoint
 app.get('/', (req, res) => {
   res.setHeader('Content-Type', 'text/plain');
