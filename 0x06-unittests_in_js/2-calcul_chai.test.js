@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const calculateNumber = require('./1-calcul');
 
 describe('calculateNumber', function () {
-  describe('type=SUM', function () {
+  describe('type == "SUM"', function () {
     it('should return the sum of two rounded numbers', function () {
       expect(calculateNumber('SUM', 1.4, 3.6)).to.equal(5); // Rounds 1.4 to 1 and 3.6 to 4
     });
@@ -16,7 +16,7 @@ describe('calculateNumber', function () {
     });
   });
 
-  describe('SUBTRACT', function () {
+  describe('type == "SUBTRACT"', function () {
     it('should return the difference of two rounded numbers', function () {
       expect(calculateNumber('SUBTRACT', 5.7, 2.3)).to.equal(4); // Rounds 5.7 to 6 and 2.3 to 2
     });
@@ -30,7 +30,7 @@ describe('calculateNumber', function () {
     });
   });
 
-  describe('DIVIDE', function () {
+  describe('type == "DIVIDE"', function () {
     it('should return the division of two rounded numbers', function () {
       expect(calculateNumber('DIVIDE', 7.8, 2.1)).to.equal(4); // Rounds 7.8 to 8 and 2.1 to 2
     });
