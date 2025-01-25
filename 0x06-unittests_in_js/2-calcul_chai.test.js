@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const calculateNumber = require('./1-calcul');
 
 describe('calculateNumber', function () {
-  describe('SUM', function () {
+  describe('type=SUM', function () {
     it('should return the sum of two rounded numbers', function () {
       expect(calculateNumber('SUM', 1.4, 3.6)).to.equal(5); // Rounds 1.4 to 1 and 3.6 to 4
     });
