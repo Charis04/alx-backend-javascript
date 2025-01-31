@@ -1,5 +1,5 @@
 const Utils = {
-    calculateNumber: function calculateNumber(type, a, b) {
+    calculateNumber: function (type, a, b) {
         // Round the inputs
         const roundedA = Math.round(a);
         const roundedB = Math.round(b);
